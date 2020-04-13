@@ -1,0 +1,159 @@
+swagger: "2.0"
+info:
+  title: "yadu REST API"
+  description: yadu API definition
+  version: "0.0.1"
+basePath: "/yadu/api/v1"
+tags:
+  - name: "users"
+  - name: "auth"
+schemes:
+  - "https"
+paths:
+  /users:
+    get:
+      tags:
+        - "users"
+      summary: "Get all users"
+      operationId: "getUsers"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Users"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+    post:
+      tags:
+        - "users"
+      summary: "Add a new user"
+      operationId: "addUser"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/NewUser"
+      responses:
+        204:
+          description: "OK"
+        401:
+          description: "Unauthroized"
+        403:
+          description: "Forbidden"
+  /users/:id:
+    delete:
+      tags:
+        - "users"
+      summary: "Delete a user"
+      operationId: "deleteUser"
+      responses:
+        204:
+          description: "OK"
+        401:
+          description: "Unauthroized"
+        403:
+          description: "Forbidden"
+    put:
+      tags:
+        - "users"
+      summary: "Update a user"
+      operationId: "updateUser"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        204:
+          description: "OK"
+        401:
+          description: "Unauthroized"
+        403:
+          description: "Forbidden"
+  /users/me:
+    get:
+      tags:
+        - "users"
+      summary: "Get the currently logged in user"
+      operationId: "getCurrentUser"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/User"
+        401:
+          description: "Unauthorized"
+  /auth/login:
+    get:
+      tags:
+        - "auth"
+      summary: "Get the login state of a user"
+      operationId: "loginState"
+      responses:
+        204:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/LoginState"
+    post:
+      tags:
+        - "auth"
+      summary: "Login a user"
+      operationId: "login"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Login"
+      responses:
+        204:
+          description: "OK"
+        401:
+          description: "Invalid credentials"
+definitions:
+  Users:
+    type: "array"
+    items:
+      $ref: "#/definitions/User"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+  NewUser:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      username:
+        type: "string"
+      password:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+  Empty:
+    type: "object"
+  LoginState:
+    type: "object"
+    properties:
+      isLoggedIn:
+        type: "boolean"
+  Login:
+    type: "object"
+    properties:
+      username:
+        type: "string"
+      password:
+        type: "string"
