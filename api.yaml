@@ -126,10 +126,7 @@ definitions:
         type: "string"
       username:
         type: "string"
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
+
   NewUser:
     type: "object"
     properties:
@@ -139,10 +136,7 @@ definitions:
         type: "string"
       password:
         type: "string"
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
+
   Empty:
     type: "object"
   LoginState:
