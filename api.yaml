@@ -141,6 +141,10 @@ definitions:
         type: "string"
       username:
         type: "string"
+      groups:
+        type: "array"
+        items:
+          type: "string"
 
   NewUser:
     type: "object"
@@ -151,6 +155,10 @@ definitions:
         type: "string"
       password:
         type: "string"
+      groups:
+        type: "array"
+        items:
+          type: "string"
 
   Empty:
     type: "object"
