@@ -44,6 +44,20 @@ paths:
         403:
           description: "Forbidden"
   /users/:id:
+    get:
+      tags:
+        - "users"
+      summary: "Get specific user"
+      operationId: "getUser"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/User"
+        401:
+          description: "Unauthroized"
+        403:
+          description: "Forbidden"
     delete:
       tags:
         - "users"
@@ -137,7 +151,7 @@ definitions:
   User:
     type: "object"
     properties:
-      id:
+      userId:
         type: "string"
       username:
         type: "string"
@@ -149,7 +163,7 @@ definitions:
   NewUser:
     type: "object"
     properties:
-      id:
+      userId:
         type: "string"
       username:
         type: "string"
